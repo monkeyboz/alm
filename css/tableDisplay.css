@@ -1,0 +1,91 @@
+.bottomNav{
+        background: #000;
+		height: 60px;
+}
+.bottomNav a{
+        background: #0061ff;
+        padding: 10px;
+        border-radius: 5px;
+        display: block;
+        float: left;
+        margin-top: 10px;
+        margin-left: 10px;
+		color: #fff;
+		text-decoration: none;
+}
+form{
+	padding: 20px;
+	background: #1c1c1c;
+	margin-bottom: 0px;
+}
+input{
+	background: #444;
+	padding: 10px;
+	border: 0px;
+	border-radius: 5px;
+	color: #fff;
+}
+input[type="submit"]{
+	background: #0066cc;
+	color: #fff;
+}
+select{
+	background: #444;
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	color: #efefef;
+}
+#contents .table{
+    border-spacing: 0px;
+    font-size: 14px;
+}
+.table a{
+    text-decoration: none;
+    color: #fff;
+}
+.table{
+    display: table;
+    width: 100%;
+	font-size: 12px;
+	color: #fff;
+}
+.table .header{
+   background: #000;
+   display: table-row;
+}
+.table > div{
+    display: table-row;
+    width: 100%;
+}
+.table > div > div{
+    display: table-cell;
+    padding: 15px;
+	border-bottom: #444444 solid 1px;
+}
+.table td a{
+    background: #222;
+    color: #fff;
+    text-align: left;
+    padding: 10px;
+    width: 100%;
+    top: 0px;
+}
+.table td{
+    padding: 10px;
+    color: #fff;
+}
+.table .odd{
+    background: #1c1c1c;
+	border-bottom: 1px solid #efefef;
+}
+.table .even{
+    background: #1c1c1c;
+	border-bottom: 1px solid #efefef;
+}
+.left{
+    float: left;
+}
+.right{
+    float: right;
+}
