@@ -1,9 +1,9 @@
 <?php
   class db {
-    var $username = '';
-    var $password = '';
-    var $server = 'localhost';
-    var $database = 'ekoprise';
+    var $username = DB_USERNAME;
+    var $password = DB_PASSWORD;
+    var $server = LOCALHOST;
+    var $database = DB_NAME;
     var $connect;
     var $title;
     var $contents = '';
@@ -160,12 +160,11 @@
     }
     
     public function conn(){
-      $this->connect = mysql_connect($this->server, $this->username, $this->password) or die(mysql_error());
-      mysql_select_db($this->database);
+      $this->connect = new mysqli($this->server, $this->username, $this->password,$this->database) or die(mysqli_error());
     }
     
     public function disc(){
-      mysql_close($this->connect);
+      mysqli_close($this->connect);
     }
     
     public function processPost(){
@@ -189,19 +188,16 @@
     public function query($query){
       $this->conn();
       if(DEBUG == 1) $this->debug .= $query.'<hr/>';
-      $db_result = mysql_query($query) or $this->debug .= mysql_error();
-	  
-	  //echo mysql_error();
-	  //echo $query;
-      
-      $result = array();
-      while($info = mysql_fetch_assoc($db_result)){
-		foreach($info as $k=>$i){
-			$info[$k] = stripslashes($i);
-		}
-		$result[] = $info;
+      $db_result = $this->connect->query($query);
+      $result = [];
+      if($db_result != false){
+        while($info = $db_result->fetch_assoc()){
+      		foreach($info as $k=>$i){
+      			$info[$k] = stripslashes($i);
+      		}
+      		$result[] = $info;
+        }
       }
-      
       $this->disc();
       return $result;
     }
@@ -247,7 +243,7 @@
       foreach($info as $k => $v){
         if($k != 'submit'){
           $keys .= $k.',';
-          if(!is_numeric($v) && $v != 'NOW()'){ $v = '"'.mysql_real_escape_string($v).'"'; }
+          if(!is_numeric($v) && $v != 'NOW()'){ $v = '"'.mysqli_real_escape_string($this->connect,$v).'"'; }
           $values .= $v.',';
         }
       }
@@ -258,8 +254,8 @@
       
       $query = 'REPLACE INTO '.$table.' '.$keys.' VALUES '.$values;
       if(DEBUG == 1){ $this->debug .= $query.'<hr/><br/>'; }
-      mysql_query($query) or $this->debug .= mysql_error().'<br/>';
-      $insert_id = mysql_insert_id();
+      mysqli_query($this->connect,$query) or $this->debug .= mysqli_error($this->connect).'<br/>';
+      $insert_id = mysqli_insert_id($this->connect);
       
       $this->disc();
       return $insert_id;
@@ -278,7 +274,7 @@
       
       $query = 'DELETE FROM '.$table.' WHERE '.$where_column.' = "'.$where_value.'"';
       if(DEBUG == 1){ $this->debug .= $query.'<hr/>'; }
-      mysql_query($query);
+      mysqli_query($this->connect,$query);
       $this->disc();
     }
     
@@ -287,7 +283,7 @@
       $values = '';
       foreach($info as $k => $v){
         if($k != 'submit'){
-          if(!is_numeric($v) && $v != 'NOW()'){ $v = '"'.mysql_real_escape_string($v).'"'; }
+          if((!is_numeric($v) && $v != 'NOW()') || $v > 1000){ $v = '"'.mysqli_real_escape_string($this->connect,$v).'"'; }
           $values .= $k.'='.$v.',';
         }
       }
@@ -302,8 +298,8 @@
       
       $query = 'UPDATE '.$table.' SET '.$values.' WHERE '.$where_column.' = '.$where_value;
       if(DEBUG == 1){ $this->debug .= $query.'<hr/><br/>'; }
-      mysql_query($query) or $this->debug .= mysql_error().'<br/>';
-      $insert_id = mysql_insert_id();
+      mysqli_query($this->connect,$query) or $this->debug .= mysqli_error($this->connect).'<br/>';
+      $insert_id = mysqli_insert_id($this->connect);
       
       $this->disc();
       return $insert_id;

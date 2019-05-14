@@ -25,8 +25,30 @@ class Notes extends Crud{
 	}
 	
 	public function createForm($id=null){
-		if($this->create('notes','notes/create',array('description'=>'','sub_type'=>'fixture','sub_type_id'=>$id[2],'user_id'=>$_SESSION['user_id']))){
+		if(sizeof($id) > 3){
+			$sub_types = array(
+					'property'	=> array(
+										'table'	=>'properties',
+										'column_name'=>'name',
+										'column_id'	=>'property_id',
+										'query'	=>'properties as p ON p.property_id = n.sub_type_id'),
+					'fixture'	=> array(
+										'table'	=>'fixtures',
+										'column_name'=>'type',
+										'column_id'	=>'fixture_id',
+										'query'	=>'fixtures as f ON f.fixture_id = n.sub_type_id'),
+					'panel'		=> array(
+										'table'	=>'panels',
+										'column_name'=>'name',
+										'column_id'	=>'panel_id',
+										'query'	=>'panels as p ON p.panel_id = n.sub_type_id')
+				);
+			$this->item_info = $this->query('SELECT '.$sub_types[$id[3]]['column_name'].' as name, '.$sub_types[$id[3]]['column_id'].' as id FROM '.$sub_types[$id[3]]['table'].' WHERE '.$sub_types[$id[3]]['column_id'].' = '.$id[2]);
+			$this->create('notes','notes/create',array('description'=>'','sub_type'=>$id[3],'sub_type_id'=>$id[2],'user_id'=>$_SESSION['user_id']));
+		}else if($this->create('notes','notes/create',array('description'=>'','sub_type'=>'fixture','sub_type_id'=>$id[2],'user_id'=>$_SESSION['user_id']))){
 			header('LOCATION: ?page=notes/listNotes');
+		}else{
+			
 		}
 	}
 	

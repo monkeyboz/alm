@@ -63,5 +63,39 @@ class Crud extends db{
 			return false;
 		}
 	}
+	
+	public function editOptions($type,$id){
+		$option_links = [
+				'property'=>array(
+						'view'		=> '?page=properties/propertyDisplay/'.$id,
+						'edit'		=> '?page=properties/editForm/'.$id,
+						'delete'	=> '?page=properties/remove/'.$id
+					),
+				'fixture' => array(
+						'view'		=> "?page=fixtures/view/".$id,
+						'edit'		=> "?page=fixtures/remove/".$id,
+						'delete'	=> "?page=fixtures/editForm/".$id
+					),
+				'fixture_type' => array(
+						'view'		=> "?page=fixtures/view/".$id,
+						'edit'		=> "?page=fixtures/remove/".$id,
+						'delete'	=> "?page=fixtures/editForm/".$id
+					),
+				'user'	=> array(
+						'view'		=>	'?page=users/view/'.$id,
+						'edit'		=> '?page=users/remove/'.$id,
+						'delete'	=> '?page=users/editForm/'.$id
+					)
+			];
+			
+			
+			
+		$options = '<div><a href="'.$option_links[$type]['view'].'">View</a>';
+		$user = $this->query('SELECT user_type FROM users WHERE user_id = '.$_SESSION['user_id']);
+		if($user[0]['user_type'] == 'superadmin' || $user[0]['user_type'] == 'superuser'){
+			$options .= '| <a href="'.$option_links[$type]['edit'].'" class="popup">Edit</a> | <a href="'.$option_links[$type]['delete'].'" class="delete">Delete</a>';
+		}
+		echo $options.'</div>';
+	}
 }
 ?>

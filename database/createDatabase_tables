@@ -1,0 +1,104 @@
+#CREATE DATABASE almdb;
+CREATE TABLE users (
+    user_id INT(10) NOT NULL AUTO_INCREMENT,
+    username VARCHAR(100) NOT NULL,
+    password VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    user_type VARCHAR(50) NOT NULL,
+    phone VARCHAR(30) NOT NULL,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30) NOT NULL,
+    parent INT(10),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    
+    PRIMARY KEY (user_id),
+    INDEX (parent)
+);
+CREATE TABLE notes (
+    note_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(10) NOT NULL,
+    description TEXT,
+    sub_type VARCHAR(100),
+    sub_type_id INT(10),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    PRIMARY KEY (note_id)
+);
+CREATE TABLE contents (
+    content_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(10) NOT NULL,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    PRIMARY KEY (content_id)
+);
+CREATE TABLE impressions (
+    panel_id INT(10),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP
+);
+CREATE TABLE panels (
+    panel_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(10) NOT NULL,
+    breaker_type INT(10) NOT NULL,
+    voltage VARCHAR(100),
+    manufacturer VARCHAR(100),
+    amp_rating VARCHAR(100),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    
+    PRIMARY KEY (panel_id),
+    INDEX (breaker_type)
+);
+CREATE TABLE fixture_type (
+    fixture_type_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(10) NOT NULL,
+    name VARCHAR(100),
+    description TEXT,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    
+    PRIMARY KEY (fixture_type_id)
+);
+CREATE TABLE properties (
+    property_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(10) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    lat VARCHAR(100),
+    log VARCHAR(100),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    
+    PRIMARY KEY (property_id),
+    FOREIGN KEY (user_id)
+      REFERENCES users(user_id)
+);
+CREATE TABLE fixtures (
+    fixture_id INT(10) NOT NULL AUTO_INCREMENT,
+    property_id INT(10) NOT NULL,
+    type VARCHAR(100) NOT NULL,
+    lat VARCHAR(100),
+    lon VARCHAR(100),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    
+    PRIMARY KEY (fixture_id),
+    FOREIGN KEY (property_id)
+        REFERENCES properties (property_id)
+);
+CREATE TABLE maintenance (
+    maintenance_id INT(10) NOT NULL AUTO_INCREMENT,
+    user_id INT(10) NOT NULL,
+    status INT(10),
+    type_id INT(10),
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified TIMESTAMP,
+    
+    PRIMARY KEY (maintenance_id)
+);
+INSERT INTO users (first_name,last_name,username,password,email,phone,user_type) VALUES ("taurean","wooley","monkeyboz","1234","taurean.wooley@gmail.com","4244133438","admin"),("t","t","t","t","t","t","admin"),("t","t","t","t","t","t","admin");
+INSERT INTO properties (user_id,address,city,state) VALUES (1,"1 testing","testing","testing"),
+(1,"30 something ave.","texas","al"),
+(2,"90 elseware drv.","ark","ak");

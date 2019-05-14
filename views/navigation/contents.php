@@ -1,3 +1,4 @@
+<?php if(!isset($page[1])) $page[1] = $page[0]; ?>
 <style>
 	#logoHolder .right{
 		margin-left: 58px;

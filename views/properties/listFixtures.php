@@ -21,6 +21,7 @@
 	<div class="header">
 		<div>Name</div>
 		<div>Watts</div>
+		<div>Property</div>
 		<div>Current Status</div>
 		<div></div>
 	</div>
@@ -41,10 +42,15 @@ foreach($info as $k=>$i){
         }
     }
     //$status = (isset($ftr['']))?'Initial Request':;
+    if(!isset($i['name'])){
+        $v = $this->query('SELECT name FROM properties as p JOIN fixtures as f ON p.property_id = f.property_id WHERE f.fixture_id = '.$i['fixture_id']);
+        $i['name'] = $v[0]['name'];
+    } 
 ?>
 	<div class="<?php echo $even; ?>">
 		<div><?php echo $fixture_type[$i['type']]['name']; ?></div>
 		<div><?php echo $fixture_type[$i['type']]['watts']; ?></div>
+		<div><a href="?page=properties/propertyDisplay/<?php echo $i['property_id']; ?>"><?php echo $i['name']; ?></a></div>
                 <div><?php echo $status; ?></div>
                 <div><a href="?page=properties/propertyDisplay/<?php echo $i['property_id']; ?>">View</a> | <a href="?page=properties/maintenanceLog/<?php echo $i['fixture_id']; ?>">Maintenance</a> | <a href="?page=properties/deleteFixture/<?php echo $i['fixture_id']; ?>" class="remove">Delete</a></div>
 	</div>
@@ -53,5 +59,5 @@ foreach($info as $k=>$i){
 ?>
 </div>
 <div class="bottomNav">
-	<a href="?page=properties/propertyDisplay/<?php echo $this->id; ?>">New</a>
+	<a href="?page=fixtures/createPanel">New</a>
 </div>

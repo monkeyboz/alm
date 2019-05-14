@@ -48,7 +48,7 @@
 					if(sizeof($info) > 0){
 						$_SESSION['username'] = $info[0]['username'];
 						$_SESSION['user_id'] = $info[0]['user_id'];
-						$_SESSION['password'] = $info[0]['password'];
+						//$_SESSION['password'] = $info[0]['password'];
 						$_SESSION['login'] = true;
                                                 
 						header('LOCATION: ?page=MainAdmin');

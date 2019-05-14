@@ -29,7 +29,7 @@
                     <div></div>
             </div>
     <?php
-    foreach($info as $k=>$i){ 
+    foreach($info as $k=>$i){
             $fixture = $this->query('SELECT * FROM maintenance AS m JOIN fixtures AS f ON m.type_id=f.fixture_id JOIN properties AS p ON f.property_id=p.property_id WHERE p.property_id='.$i['property_id'].' AND m.status != "closed" ORDER BY m.date DESC');
             $contact = $this->query('SELECT * FROM users WHERE user_id='.$i['user_id']);
             $even = ($k%2)?'even':'odd';
@@ -40,7 +40,7 @@
                     <div><a href="?page=users/view/<?php echo $contact[0]['user_id']; ?>"><?php echo $contact[0]['first_name']; ?></a></div>
                     <div><?php echo $contact[0]['phone']; ?></div>
                     <div><a href="?page=properties/listFixtures/<?php echo $i['property_id']; ?>"><?php echo $status; ?></a></div>
-                    <div><a href="?page=properties/propertyDisplay/<?php echo $i['property_id']; ?>">View</a> | <a href="?page=properties/editForm/<?php echo $i['property_id']; ?>" class="popup">Edit</a> | <a href="?page=properties/remove/<?php echo $i['property_id']; ?>" class="delete">Delete</a></div>
+                    <?php $this->editOptions('property',$i['property_id']); ?>
             </div>
     <?php
     }

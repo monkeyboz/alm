@@ -38,6 +38,7 @@ class Fixtures extends Crud{
         if($this->create('panels','fixtures/createPanel',array('name'=>'','voltage'=>'','manufacturer'=>'','breaker_type'=>'','amp_rating'=>''))){
 			if(isset($_POST['icon'])){
 				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$_POST['panels']['name'].'.png');
+				$this->checkFixtureType();
 			}
 			if(!isset($_GET['ajax'])){
 				header('LOCATION: ?page=fixtures/listPanels');
@@ -56,6 +57,7 @@ class Fixtures extends Crud{
 		if($this->create('panels','fixtures/createPanel',array('panel_id'=>$info['panel_id'],'name'=>$info['name'],'voltage'=>$info['voltage'],'manufacturer'=>$info['manufacturer'],'breaker_type'=>$info['breaker_type'],'amp_rating'=>$info['amp_rating']))){
 			if(isset($_POST['icon'])){
 				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$_POST['panels']['name'].'.png');
+				$this->checkFixtureType();
 			}
 			header('LOCATION: ?page=fixtures/listPanels');
 		}
@@ -77,10 +79,27 @@ class Fixtures extends Crud{
 		$this->render('fixtures/timers');
 	}
 	
+	public function checkFixtureType(){
+		$name = "";
+		if(isset($_POST['fixture_type']['name'])){
+			$name =  $_POST['fixture_type']['name'];
+		}else if(isset($_POST['panels']['name'])){
+			$name = $_POST['panels']['name'];
+		}else{
+			$name = $_POST['type'];
+		}
+		$check = $this->query('SELECT * FROM fixture_type WHERE name = "'.$name.'"');
+		if(sizeof($check) < 1){
+			$this->save("fixture_type",array("name"=>$name,"user_id"=>$_SESSION['user_id']));
+		}
+	}
+	
 	public function createTimer(){
         if($this->create('panels','fixtures/createTimer',array('name'=>'','voltage'=>'','manufacturer'=>'','type'=>''))){
 			if(isset($_POST['icon'])){
-				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$_POST['panels']['name'].'.png');
+				$name = (isset($_POST['panels']['name']))?$_POST['panels']['name']:$_POST['type'];
+				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$name.'.png');
+				checkFixtureType();
 			}
 			if(!isset($_GET['ajax'])){
 				header('LOCATION: ?page=fixtures/listTimer');
@@ -98,7 +117,9 @@ class Fixtures extends Crud{
 		
         if($this->create('panels','fixtures/createTimer',array('panel_id'=>$info['panel_id'],'name'=>$info['name'],'voltage'=>$info['voltage'],'manufacturer'=>$info['manufacturer'],'type'=>$info['type']))){
 			if(isset($_POST['icon'])){
-				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$_POST['panels']['name'].'.png');
+				$name = (isset($_POST['panels']['name']))?$_POST['panels']['name']:$_POST['type'];
+				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$name.'.png');
+				checkFixtureType();
 			}
 			header('LOCATION: ?page=fixtures/listTimer');
 		}
@@ -139,7 +160,16 @@ class Fixtures extends Crud{
                     move_uploaded_file($_FILES['upload']['tmp_name'], 'uploads/icon/'.$_POST['fixture_type']['name'].'.png');
                 }
 				if(isset($_POST['icon'])){
-					copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$_POST['fixture_type']['name'].'.png');
+					$name = '';
+					if(isset($_POST['panels']['name'])){
+						$name = $_POST['panels']['name'];
+					}else if(isset($_POST['fixture_type']['type'])){
+						$name = $_POST['fixture_type']['type'];
+					}else{
+						$name = $_POST['type'];
+					}
+					copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$name.'.png');
+					$this->checkFixtureType();
 				}
                 if(!isset($_GET['ajax'])){
                     header('LOCATION: ?page=fixtures/listFixtures');
@@ -155,7 +185,9 @@ class Fixtures extends Crud{
 		$info = $this->query('SELECT * FROM fixture_type WHERE fixture_type_id='.$id[2]);
 		if($this->create('fixture_type','fixtures/create',array('fixture_type_id'=>$info[0]['fixture_type_id'],'name'=>$info[0]['name'],'watts'=>$info[0]['watts'],'description'=>$info[0]['description'],'type'=>$info[0]['type']))){
 			if(isset($_POST['icon'])){
-				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$_POST['fixture_type']['name'].'.png');
+				$name = (isset($_POST['fixture_type']['name']))?$_POST['fixture_type']['name']:$_POST['type'];
+				copy('uploads/icon/'.$_POST['icon'].'.png', 'uploads/icon/'.$name.'.png');
+				checkFixtureType();
 			}
 			header('LOCATION: ?page=fixtures/listFixtures');
 		}

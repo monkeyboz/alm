@@ -19,12 +19,13 @@
 		<div></div>
 	</div>
 <?php
-foreach($info as $i){
+$user = $this->query('SELECT user_type FROM users WHERE user_id = '.$_SESSION['user_id']);
+foreach($info as $k=>$i){
 ?>
-	<div class="even">
+	<div class="<?php echo ($k%2 == 0)?'even':'odd'; ?>">
 		<div><?php echo $i['username']; ?></div>
-		<div><?php echo $i['password']; ?></div>
-		<div><a href="?page=users/view/<?php echo $i['user_id']; ?>">View</a> | <a href="?page=users/remove/<?php echo $i['user_id']; ?>">Delete</a> | <a href="?page=users/editForm/<?php echo $i['user_id']; ?>">Edit</a></div>
+		<div><?php echo ($user[0]['user_type'] == 'superadmin')?$i['password']:'******'; ?></div>
+		<?php $this->editOptions('user',$i['user_id']); ?>
 	</div>
 <?php
 }

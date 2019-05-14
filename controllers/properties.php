@@ -65,28 +65,47 @@ class Properties extends Crud{
         }
 	
 	public function saveMarker(){
-		if(isset($_POST['latlon'])){
-			$position = explode(',', $_POST['latlon']);
+		$this->saveFixture();
+	}
+	
+	public function savePanel(){
+		$this->saveMarker();
+	}
+	
+	public function checkFixtureType($icon){
+		$icon = explode("/",$icon);
+		$name = substr($icon[sizeof($icon)-1],0,strpos($icon[sizeof($icon)-1],'.'));
+		$check = $this->query('SELECT * FROM fixture_type WHERE name = "'.$name.'"');
+		if(sizeof($check) < 1){
+			$this->save("fixture_type",array("name"=>$name,"user_id"=>$_SESSION['user_id']));
+		}
+	}
+	
+	public function saveFixture(){
+		$position = explode(',', $_POST['latlon']);
 			$type = explode('.', $_POST['icon']);
 			$id = $_POST['id'];
 			
 			$lat = str_replace('(', '', $position[0]);
 			$lon = str_replace(')', '', $position[1]);
-			
-			$test = $this->query('SELECT * FROM fixtures WHERE fixture_id='.$_POST['markerId']);
+			$marker_id = $_POST['markerId'];
+			$test = $this->query('SELECT * FROM fixtures WHERE fixture_id='.$marker_id);
 			if(sizeof($test) < 1){
-				$id = $this->save('fixtures', array('property_id'=>$id,'lat'=>$lat,'lon'=>$lon, 'type'=>str_replace('uploads/icon/','',$type[0])));
-				//echo $this->debug;
-                                $info = $this->query('SELECT * FROM fixtures AS f Join fixture_type AS t ON t.name=f.type WHERE f.fixture_id='.$id);
+				$marker_id = $this->query('SELECT marker_id FROM fixtures ORDER BY marker_id DESC LIMIT 1');
+				$marker_id[0]['marker_id']++;
+				$id = $this->save('fixtures', array('property_id'=>$id,'lat'=>$lat,'lon'=>$lon, 'marker_id'=>$marker_id[0]['marker_id'],'type'=>str_replace('uploads/icon/','',$type[0])));
+				$this->checkFixtureType($_POST['icon']);
+				
+                $info = $this->query('SELECT * FROM fixtures AS f Join fixture_type AS t ON t.name=f.type WHERE f.fixture_id='.$id);
 				echo json_encode($info);
 				die();
 			} else {
-				$this->edit('fixtures', array('lat'=>$lat,'lon'=>$lon), array('fixture_id'=>$_POST['markerId']));
-				$info = $this->query('SELECT * FROM fixtures AS f Join fixture_type AS t ON t.name=f.type WHERE f.fixture_id='.$_POST['markerId']);
-                                echo json_encode($info);
+				$this->edit('fixtures', array('lat'=>$lat,'lon'=>$lon), array('fixture_id'=>$marker_id));
+				$this->checkFixtureType($_POST['icon']);
+				$info = $this->query('SELECT * FROM fixtures AS f Join fixture_type AS t ON t.name=f.type WHERE f.fixture_id='.$marker_id);
+                echo json_encode($info);
 				die();
 			}
-		}
 	}
 	
 	public function deleteMarker(){

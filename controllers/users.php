@@ -15,7 +15,7 @@ class Users extends Crud{
         }
 	
 	public function listUsers(){
-            $this->info = $this->listItems(null,null,null,null,'users');
+            $this->info = $this->listItems('parent',$_SESSION['user_id'],null,null,'users');
             $this->render('users/list');
 	}
 	
@@ -43,7 +43,18 @@ class Users extends Crud{
 	public function editForm($id=null){
             $info = $this->query('SELECT * FROM users WHERE user_id='.$id[2]);
             $parent = $this->query('SELECT * FROM users WHERE username="'.$info[0]['parent'].'"');
-            if($this->create('users','users/create',array('user_id'=>$id[2],'username'=>$info[0]['username'],'password'=>$info[0]['password'],'email'=>$info[0]['email'],'parent'=>$parent[0]['username'],'phone'=>$info[0]['phone'],'last_name'=>$info[0]['last_name'],'first_name'=>$info[0]['first_name'],'user_type'=>$info[0]['user_type']))){
+            $query_array = array('user_id'=>$id[2],
+            					 'username'=>$info[0]['username'],
+            					 'password'=>$info[0]['password'],
+            					 'email'=>$info[0]['email'],
+            					 'phone'=>$info[0]['phone'],
+            					 'last_name'=>$info[0]['last_name'],
+            					 'first_name'=>$info[0]['first_name'],
+            					 'user_type'=>$info[0]['user_type']);
+        	if(sizeof($parent) != 0){
+        		$query_array['parent'] = $parent[0]['username'];
+        	}
+            if($this->create('users','users/create',$query_array)){
                     header('LOCATION: ?page=users/listUsers');
             }
 	}

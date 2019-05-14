@@ -17,18 +17,18 @@
 		<div>Name</div>
 		<div>Watts</div>
         <div>Description</div>
-        <div>Type</div>
 		<div></div>
 	</div>
 <?php
-foreach($info as $i){
+foreach($info as $k=>$i){
+	$even = ($k%2 == 0)?'even':'odd';
 ?>
-	<div class="even">
+	<div class="<?php echo $even; ?>">
 		<div><?php echo $i['name']; ?></div>
 		<div><?php echo $i['watts']; ?></div>
         <div><?php echo $i['description']; ?></div>
-        <div><?php echo $i['type']; ?></div>
-		<div><a href="?page=fixtures/view/<?php echo $i['fixture_type_id']; ?>">View</a> | <a href="?page=fixtures/remove/<?php echo $i['fixture_type_id']; ?>">Delete</a> | <a href="?page=fixtures/editForm/<?php echo $i['fixture_type_id']; ?>">Edit</a></div>
+        <div><?php $this->editOptions('fixture_type',$i['fixture_type_id']); ?></div>
+	</div>
 	</div>
 <?php
 }

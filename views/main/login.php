@@ -1,4 +1,4 @@
-<?php echo $info = $this->info; ?>
+<?php $info = $this->info; ?>
 <style>
 	#loginHolder{
 		height: 0px;

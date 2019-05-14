@@ -18,6 +18,11 @@
             }
             #shelf{position:fixed; top:10px; left:500px; height:100px;width:200px;background:white;opacity:0.7;}
             #draggable {position:absolute; top:10px; left:10px; width: 30px; height: 30px;z-index:1000000000;}
+            .boxNav{
+            	width: 100%;
+            	background: #ababab;
+    			height: 32px;
+            }
 			.boxNav a{
 				float: left;
 				padding: 10px;
@@ -25,11 +30,11 @@
 				color: #fff;
 				text-decoration: none;
 			}
-                        .indicator{
-                            position: absolute;
-                            right: 20px;
-                            top: 5px;
-                        }
+            .indicator{
+                position: absolute;
+                right: 20px;
+                top: 5px;
+            }
 			#info a{
 				color: #fff;
 				text-decoration: none;
@@ -42,100 +47,108 @@
 				top: 10px;
 				right: 40px;
 			}
-                        #fixtureNav{
-                            position: fixed;
-                            z-index: 10000;
-                            background: rgba(255,255,255,.8);
-							bottom: 37px;
-                            right: 173px;
-                            border-radius: 10px;
-                            box-shadow: 0px 2px 10px #000;
-							overflow: hidden;
-							border: 1px solid #545454;
-                        }
-                        #fixtureNav a{
-                            clear: both;
-                            display: block;
-                            text-align: left;
-                            padding: 10px;
-                            font-weight: bold;
-                            font-size: 11px;
-                        }
-                        #fixtureSearch{
-                            background: rgba(0,0,0,.8);
-                            min-height: 100px;
-                            max-height: 101px;
-                            overflow-y: scroll;
-							margin-top: 10px;
-							padding: 10px;
-							border-radius: 5px;
-                        }
-						#panelSearch{
-                            background: rgba(0,0,0,.8);
-                            min-height: 100px;
-                            max-height: 101px;
-                            overflow-y: scroll;
-							margin-top: 10px;
-							padding: 10px;
-							border-radius: 5px;
-                        }
-                        #holderLayout{
-							background: rgba(255,255,255,.8);
-							padding: 10px;
-							border-radius: 5px;
-                        }
-                        #bottomMapNav{
-                            position: fixed;
-                            bottom: 40px;
-                            right: 10px;
-                            font-size: 11px;
-                            z-index: 10;
-                        }
-                        #bottomMapNav #new{
-                            background: #fff;
-							color: #545454;
-							border: #545454 solid 1px;
-							border-radius: 5px;
-							box-shadow: 0px 1px 2px #000;
-							padding: 13;
-							font-size: 11px;
-                        }
-						#bottomMapNav #site{
-							margin-top: 5px;
-						}
-						#bottomMapNav #siteHolder{
-							float: left;
-							background: #fff;
-							border-radius: 5px;
-							width: 30px;
-							padding: 3px;
-							border: 1px solid #545454;
-							box-shadow: 0px 1px 3px;
-							margin-top: -11px;
-							margin-right: 12px;
-						}
-						input[name="fixtures[search]"]{
-							border-radius: 5px;
-							border: 1px solid #545454;
-							padding: 5px 10px;
-							background: #545454;
-							color: #fff;
-						}
-						input[name="search"]{
-							background: #0061ff;
-							padding: 5px 10px;
-							border: 0px;
-							border-radius: 5px;
-							color: #fff;
-						}
-						.close{
-							margin-bottom: 10px;
-						}
-						.propertySelect{
-							padding: 10px;
-							border-radius: 5px;
-							border: none;
-						}
+            #fixtureNav{
+                position: fixed;
+                z-index: 10000;
+                background: rgba(255,255,255,.8);
+				bottom: 37px;
+                right: 173px;
+                border-radius: 10px;
+                box-shadow: 0px 2px 10px #000;
+				overflow: hidden;
+				border: 1px solid #545454;
+            }
+            #fixtureNav a{
+                clear: both;
+                display: block;
+                text-align: left;
+                padding: 10px;
+                font-weight: bold;
+                font-size: 11px;
+            }
+            #fixtureSearch{
+                background: rgba(0,0,0,.8);
+                min-height: 100px;
+                max-height: 101px;
+                overflow-y: scroll;
+				margin-top: 10px;
+				padding: 10px;
+				border-radius: 5px;
+            }
+			#panelSearch{
+                background: rgba(0,0,0,.8);
+                min-height: 100px;
+                max-height: 101px;
+                overflow-y: scroll;
+				margin-top: 10px;
+				padding: 10px;
+				border-radius: 5px;
+            }
+            #holderLayout{
+				background: rgba(255,255,255,.8);
+				padding: 10px;
+				border-radius: 5px;
+            }
+            #bottomMapNav{
+                position: fixed;
+                bottom: 40px;
+                right: 10px;
+                font-size: 11px;
+                z-index: 10;
+            }
+            #bottomMapNav #new{
+                background: #fff;
+				color: #545454;
+				border: #545454 solid 1px;
+				border-radius: 5px;
+				box-shadow: 0px 1px 2px #000;
+				padding: 13;
+				font-size: 11px;
+            }
+			#bottomMapNav #site{
+				margin-top: 5px;
+			}
+			#bottomMapNav #siteHolder{
+				float: left;
+				background: #fff;
+				border-radius: 5px;
+				width: 30px;
+				padding: 3px;
+				border: 1px solid #545454;
+				box-shadow: 0px 1px 3px;
+				margin-top: -11px;
+				margin-right: 12px;
+			}
+			#overlayFormHolder input, select{
+				border: none;
+				background: #fff;
+				margin-bottom: 10px;
+				color: #000;
+				font-size: 12px;
+				padding: 10px;
+			}
+			input[name="fixtures[search]"]{
+				border-radius: 5px;
+				border: 1px solid #545454;
+				padding: 5px 10px;
+				background: #545454;
+				color: #fff;
+			}
+			input[name="search"]{
+				background: #0061ff;
+				padding: 5px 10px;
+				border: 0px;
+				border-radius: 5px;
+				color: #fff;
+			}
+			.close{
+				margin-bottom: 10px;
+			}
+			.propertySelect{
+				padding: 10px;
+				border-radius: 5px;
+				border: none;
+			}
         </style>
 		<script type="text/javascript" src="js/jquery.mCustomScrollbar.js"></script>
 		<link href="css/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" />
@@ -184,7 +197,7 @@
 														$('#fixtureSearch').prepend('<a href="" id="'+json.name.replace(' ','_')+'">'+json.name+'</a>');
 														$('#'+json.name.replace(' ','_')).css('color','#00ff00');
 														$('#'+json.name.replace(' ','_')).click(function(){
-															addMarker('uploads/icon/'+json.name+'.png', 'Type: '+json.name+'<br/>Watts: '+json.watts+'<br/>');
+															//addMarker('uploads/icon/'+json.name+'.png', 'Type: '+json.name+'<br/>Watts: '+json.watts+'<br/>');
 															return false;
 														})
 														$('#mainOverlay').stop();
@@ -273,6 +286,7 @@
 				var $map;
 				var $latlng;
 				var overlay;
+				var ajaxCallId = 0;
 				var markerArray = new Array;
 								
                                 $('#map_canvas').click(function(e){
@@ -312,22 +326,19 @@
                                     }
                                     return false;
                                 })
-				
 				var geocoder = new google.maps.Geocoder();
-				
 				<?php if($property['lat'] != ''){ ?>
-				$latlng = new google.maps.LatLng(<?php echo $property['lat']; ?>,<?php echo $property['log']; ?>);
-				setMap();
+					$latlng = new google.maps.LatLng(<?php echo $property['lat']; ?>,<?php echo $property['log']; ?>);
+					setMap();
 				<?php } else { ?>
-				//$latlng = new google.maps.LatLng(<?php echo $property['lat']; ?>,<?php echo $property['log']; ?>);
-				geocoder.geocode({address:'<?php echo $property['address']; ?> <?php echo $property['city']; ?>, <?php echo $property['state']; ?>'}, function(results, status){ $latlng = results[0].geometry.location; setMap(); });
+					geocoder.geocode({address:'<?php echo $property['address']; ?> <?php echo $property['city']; ?>, <?php echo $property['state']; ?>'}, function(results, status){ $latlng = results[0].geometry.location; setMap(); });
 				<?php } ?>
 				function setMap(){
 					var myOptions = {
 						zoom: 19,
 						center: $latlng,
 						mapTypeId: google.maps.MapTypeId.SATELLITE,
-						mapTypeControl: false,
+						mapTypeControl: true,
 						zoomControl: true,
 						zoomControlOptions: {
 							style: google.maps.ZoomControlStyle.LARGE,
@@ -359,18 +370,23 @@
 							size: new google.maps.Size(25, 25),
 						});
 						$map.panTo($latlng);
-						id = marker.__gm_id;
+						id = fixture_id;
+						marker.id = fixture_id;
 						markers[id] = marker;
 						markersId[id] = fixture_id;
 
 						var boxNav = '<a href="javascript:overlay(\'?page=fixtures/requestMaintenance/'+fixture_id+'\')" class="maintenance">Request Maintenance</a><a href="javascript:overlay(\'?page=fixtures/editFixture/'+fixture_id+'\')">Update</a><a href="javascript:overlay(\'?page=notes/createForm/'+id+'/fixture/\')">Notes</a>';
 						
-						marker.info = new InfoBubble({content:'<div style="color: #000;  width: 283px; overflow: hidden; padding: 10px;"><div class="indicator"><img src="images/indicator.png"/></div>Fixture id: '+ marker.__gm_id + '<br/>'+fixture_info+'<div class="boxNav">'+boxNav+'</div>',padding:0,minHeight:130,backgroundClassName:'cleanMap'})
+						marker.info = new InfoBubble({content:'<div style="color: #000;  width: 283px; overflow: hidden; padding: 10px; margin-right: 30px;"><div class="indicator"><img src="images/indicator.png"/></div>Fixture id: '+ fixture_id + '<br/>'+fixture_info+'<div class="boxNav">'+boxNav+'</div>',padding:0,minHeight:130,backgroundClassName:'cleanMap'})
 						
-						google.maps.event.addListener(marker, "rightclick", function (point) { id = this.__gm_id; delMarker(id) });
-						google.maps.event.addListener(marker, "click", function (point) { id = this.__gm_id; locationOnClick(id) });
-						google.maps.event.addListener(marker, "dragend", function (point) { id = this.__gm_id; dragEnd(id) });
+						updateAction(marker);
 						
+					}
+					
+					function updateAction(maker){
+						google.maps.event.addListener(marker, "rightclick", function (point) { id = this.id; delMarker(id) });
+						google.maps.event.addListener(marker, "click", function (point) { id = this.id; locationOnClick(id) });
+						google.maps.event.addListener(marker, "dragend", function (point) { id = this.id; dragEnd(id) });
 					}
 					
 					<?php foreach($fixtures as $f){ ?>
@@ -382,15 +398,16 @@
 						
 						$.ajax({
 							url: '?page=properties/saveMarker&debug=1',
-							data: 'latlon=' + marker.position +'&icon='+marker.icon+'&id=<?php echo $this->id; ?>&markerId='+markersId[id],
+							data: 'latlon=' + marker.position +'&icon='+marker.icon+'&id=<?php echo $this->id; ?>&markerId='+marker.id,
 							type: 'POST',
 							success: function(html){
 								var json = jQuery.parseJSON(html);
-                                                                markersId[id] = json[0]['fixture_id'];
+								marker = json[0]['fixture_id'];
+                                markersId[id] = json[0]['fixture_id'];
                                                                 
-                                                                var boxNav = '<a href="javascript:overlay(\'?page=fixtures/requestMaintenance/'+json[0]['fixture_id']+'\')">Request Maintenance</a><a href="javascript:overlay(\'?page=fixtures/editFixture/'+json[0]['fixture_id']+'\')">Update</a><a href="javascript:overlay(\'?page=notes/createForm/'+json[0]['fixture_id']+'/fixture/\')">Notes</a>';
+                                var boxNav = '<a href="javascript:overlay(\'?page=fixtures/requestMaintenance/'+json[0]['fixture_id']+'\')">Request Maintenance</a><a href="javascript:overlay(\'?page=fixtures/editFixture/'+json[0]['fixture_id']+'\')">Update</a><a href="javascript:overlay(\'?page=notes/createForm/'+json[0]['fixture_id']+'/fixture/\')">Notes</a>';
 						
-                                                                marker.info = new InfoBubble({content:'<div style="color: #000;  width: 308px; overflow: hidden; padding: 10px;"><div class="indicator"><img src="images/indicator.png"/></div>Fixture id: '+ json[0]['fixture_id']+ '<br/>Type: '+json[0]['name']+'<br/>Watts: '+json[0]['watts']+'<br/><div class="boxNav">'+boxNav+'</div>',padding:0,minHeight:130,backgroundClassName:'cleanMap'})
+                                marker.info = new InfoBubble({content:'<div style="color: #000;  width: 308px; overflow: hidden; padding: 10px;"><div class="indicator"><img src="images/indicator.png"/></div>Fixture id: '+ json[0]['fixture_id']+ '<br/>Type: '+json[0]['name']+'<br/>Watts: '+json[0]['watts']+'<br/><div class="boxNav">'+boxNav+'</div>',padding:0,minHeight:130,backgroundClassName:'cleanMap'})
 
 							}
 						})
@@ -422,21 +439,20 @@
                         
                         id = marker.__gm_id;
                         $.ajax({
-                            url: '?page=properties/savePanel&debug=1',
-                            data: 'latlon=' + marker.position +'&icon='+marker.icon+'&id=<?php echo $this->id; ?>&markerId=null',
+                            url: '?page=properties/savePanel&ajax=1',
+                            data: 'latlon=' + marker.position +'&icon='+marker.icon+'&id=<?php echo $this->id; ?>&markerId=null&type='+type,
                             type: 'POST',
                             success: function(html){
                                 var json = jQuery.parseJSON(html);
-                                markerId[id] = '{json[0].name,json[0].panel_id}';
-                                markers[id] = marker;
+                                markersId[json[0].panel_id] = '{json[0].name,json[0].panel_id}';
+                                markers[json[0].panel_id] = marker;
+                                marker.id = json[0].panel_id;
                                 
                                 var boxNav = '<a href="javascript:overlay(\'?page=fixtures/requestMaintenance/'+json[0]['panel_id']+'/panel\')">Request Maintenance</a><a href="javascript:overlay(\'?page=fixtures/editPanel/'+json[0]['fixture_id']+'/\')">Update</a><a href="javascript:overlay(\'?page=notes/createForm/'+json[0]['fixture_id']+'/fixture/\')">Notes</a>';
                                 
                                 marker.info = new InfoBubble({content:'<div style="color: #000;  width: 308px; overflow: hidden; padding: 10px;"><div class="indicator"><img src="images/indicator.png"/></div>Fixture id: '+ json[0].fixture_id + '<br/>Type: '+json[0].name+'<br/>Watts: '+json[0].watts+'<br/><div class="boxNav">'+boxNav+'</div>',padding:0,minHeight:130,backgroundClassName:'cleanMap'})
 								
-                                google.maps.event.addListener(marker, "rightclick", function (point) { id = this.__gm_id; delMarker(id) });
-                                google.maps.event.addListener(marker, "click", function (point) { id = this.__gm_id; locationOnClick(id) });
-                                google.maps.event.addListener(marker, "dragend", function (point) { id = this.__gm_id; dragEnd(id) });
+                                updateAction(marker);
                             }
                         })
 						
@@ -445,6 +461,8 @@
 						});
 					}
 					
+					var ajaxCalls = [];
+					var ajax;
 					var addMarker = function (image,fixture_info,type){
 						marker = new google.maps.Marker({ 
 							position: $map.getCenter(),
@@ -455,25 +473,20 @@
 							icon: image,
 							size: new google.maps.Size(25, 25),
 						});
-						//$map.panTo($latlng);
                         
-                        id = marker.__gm_id;
-                        $.ajax({
-                            url: '?page=properties/saveMarker&debug=1',
-                            data: 'latlon=' + marker.position +'&icon='+marker.icon+'&id=<?php echo $this->id; ?>&markerId=null',
+                        ajax = $.ajax({
+                            url: '?page=properties/saveMarker&ajax=1',
+                            data: 'latlon=' + marker.position +'&icon='+marker.icon+'&id=<?php echo $this->id; ?>&markerId=null&type='+type,
                             type: 'POST',
                             success: function(html){
                                 var json = jQuery.parseJSON(html);
-                                markersId[id] = '{json[0].name,json[0].fixture_id}';
-                                markers[id] = marker;
-                                
+                                markersId[json[0].fixture_id] = '{json[0].name,json[0].fixture_id}';
+                                markers[json[0].fixture_id] = marker;
+                                marker.id = json[0].fixture_id;
                                 var boxNav = '<a href="javascript:overlay(\'?page=fixtures/requestMaintenance/'+json[0]['fixture_id']+'\')">Request Maintenance</a><a href="javascript:overlay(\'?page=fixtures/editFixture/'+json[0]['fixture_id']+'\')">Update</a><a href="javascript:overlay(\'?page=notes/createForm/'+json[0]['fixture_id']+'/fixture/\')">Notes</a>';
                                 
                                 marker.info = new InfoBubble({content:'<div style="color: #000;  width: 308px; overflow: hidden; padding: 10px;"><div class="indicator"><img src="images/indicator.png"/></div>Fixture id: '+ json[0].fixture_id + '<br/>Type: '+json[0].name+'<br/>Watts: '+json[0].watts+'<br/><div class="boxNav">'+boxNav+'</div>',padding:0,minHeight:130,backgroundClassName:'cleanMap'})
-								
-                                google.maps.event.addListener(marker, "rightclick", function (point) { id = this.__gm_id; delMarker(id) });
-                                google.maps.event.addListener(marker, "click", function (point) { id = this.__gm_id; locationOnClick(id) });
-                                google.maps.event.addListener(marker, "dragend", function (point) { id = this.__gm_id; dragEnd(id) });
+                                updateAction(marker);
                             }
                         })
 						
@@ -508,7 +521,7 @@
 					<?php }?>
 					<?php foreach($panel_type as $f){ ?>
 					$('#<?php echo str_replace(' ', '_', $f['name']); ?>').click(function(){
-						addPanel('uploads/icon/<?php echo $f['name']; ?>.png', 'Type: <?php echo $f['name']; ?><br/>Voltage: <?php echo $f['voltage']; ?><br/>Breaker Type: <?php echo $f['breaker_type']; ?><br/>Type: <?php echo $f['type']; ?><br/>','panel');
+						//addPanel('uploads/icon/<?php echo $f['name']; ?>.png', 'Type: <?php echo $f['name']; ?><br/>Voltage: <?php echo $f['voltage']; ?><br/>Breaker Type: <?php echo $f['breaker_type']; ?><br/>Type: <?php echo $f['type']; ?><br/>','panel');
 						return false;
 					})
 					<?php }?>
@@ -525,15 +538,17 @@
                                                 $('#fixtureSearch').html('');
                                                 for(var i = 0; i < json.length;i++){
                                                     var info = json[i];
-                                                    $('#fixtureSearch').append('<a href="" id="'+info.name.replace(' ','_')+'">'+info.name+'</a>');
+                                                    var name = info.name.replace(/ /g,'_');
+                                                    $('#fixtureSearch').append('<a href="" id="'+name+'">'+info.name+'</a>');
                                                     
-                                                    $('#'+info.name.replace(' ','_')).data('name',info.name);
-                                                    $('#'+info.name.replace(' ','_')).data('watts',info.watts);
-                                                    $('#'+info.name.replace(' ','_')).click(function(){
+                                                    $('#'+name).data('name',info.name);
+                                                    $('#'+name).data('watts',info.watts);
+                                                    $('#'+name).click(function(){
                                                         addMarker('uploads/icon/'+$(this).data('name')+'.png', 'Type: '+$(this).data('name')+'<br/>Watts: '+$(this).data('watts')+'<br/>');
                                                         return false;
                                                     })
                                                 }
+                                                $("#fixtureSearch").mCustomScrollbar();
                                             }
                                         })
                                         return false;
@@ -564,6 +579,9 @@
 												var parent = $(this).parent().parent();
 												var data = '';
 												parent.find('input[type="text"]').each(function(){
+													data += $(this).attr('name')+'='+$(this).val()+'&';
+												})
+												parent.find('select').each(function(){
 													data += $(this).attr('name')+'='+$(this).val()+'&';
 												})
 												data += 'icon='+parent.find('input:radio[name="icon"]:checked').val();

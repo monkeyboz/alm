@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<link href='http://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Actor' rel='stylesheet' type='text/css'>
 		<style>
 			body{
 				margin: 0px;
